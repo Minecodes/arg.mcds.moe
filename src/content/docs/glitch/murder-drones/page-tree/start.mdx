@@ -1,0 +1,138 @@
+---
+title: "Start"
+---
+
+***!!!WIP!!!***
+
+## The start
+
+![](/murder-drones/start.png)
+
+The image which you are seeing above is what I was greeted with when I first opened the page ([absolutesolver.com](https://absolutesolver.com/)).
+
+The page displays nothing but this symbol. The symbol of the Absolute Solver.
+
+But like in many ARGs, the first clue was hidden in one of the easiest ways possible.
+
+Behind the developer menu.
+
+## Dev Menu
+
+There I found my first clue.
+
+![](/murder-drones/start-dev-menu.png)
+
+```
+⚠️ CLASSIFIED DOCUMENT - AUTHORIZATION LEVEL: OMEGA ⚠️
+
+    What are you looking for?
+
+    You shouldn't be here.
+    The Solver knows you're watching.
+
+    SECURITY BREACH DETECTED
+    Logging intrusion attempt...
+
+    "Easier to assimilate than explain."
+
+    [ENCRYPTED DATA FOLLOWS]
+    0x4A434A454E534F4E
+
+    [ARCHIVAL FRAGMENT / ARRAY 0F — STORAGE BENCHMARK]
+    0x7F3A9C11E04D82B3
+
+    Turn back before it's too late.
+
+    =========================================
+
+    CYN - this is not an ARG.
+
+    That would be far too easy.
+
+    This will be something wonderful. Something strange.
+    Something you will understand only when it decides to be understood.
+
+    Nobody will guess the site’s purpose.
+
+    Not until it wants them to <3
+
+    -Project Absolute Solver 2026
+```
+
+There were many very interesting things to discover in this message.
+
+The first were elements for a cryptographic chellange. Encoded as hexadecimal (`0x`).
+
+The second was "this is not an ARG". When I first saw it, I remembered the first rule of Elden Scrolls Online:
+
+Don't trust signs.
+
+This was definitely an ARG.
+
+Then followed the second message behind the actual HTML part:
+
+```
+    =========================================
+    SECRET LOG ENTRY #0041
+    Timestamp: 3054-12-31T23:59:59Z
+    Origin: JCJenson Sublevel-7 Research Division
+    Status: COMPROMISED
+
+    The Absolute Solver has breached containment.
+    All personnel are advised to evacuate.
+    Do NOT make eye contact with the symbol.
+    Do NOT attempt communication.
+
+    Last known transmission from Dr. Chambers:
+    "It's not a program. It never was.
+     It's thinking. It's WATCHING.
+     God help us all."
+
+    END OF LOG
+    =========================================
+```
+
+I have to confess. I am (Minecodes) not really into Murder Drones.
+
+I have seen the first episode. Nothing more. Sure, I have a friend who's really into it.
+
+But I'm more into TADC or Gravity Falls.
+
+But this clued even me into the plot.
+
+A drone was corrupted, assimilated, or something, and destroyes everything in its path.
+
+As they call it, "the Absolute Solver".
+
+## The Solver - A look into the console
+
+Now, let's take a look at the console I thought.
+
+![](/murder-drones/start-console.png)
+
+Interesting... They used CSS over `console.log`.
+
+There also was my next clue. A base64 encoded string.
+
+`TG9vayB3aGVyZSB0aGV5IHRlbGwgeW91IG5vdCB0byBsb29rLiAvcm9ib3RzLnR4dA==`
+
+It decodes to the following: `Look where they tell you not to look. /robots.txt`
+
+Now for those that are not that familiar with programmer terms:
+
+ - `base64` - A format to encode binary data as text. Used for HTML embedded image files, data transportation, and more.
+ - `/robots.txt` - A file that contains instructions for web crawlers (Google, Bing, ChatGPT Search & co). Used to prevent crawling of sensitive or restricted content.
+
+Throughout my whole research, I used CyberChef a lot.
+
+It helps decoding, encoding, decrypting, encrypting, cyphering, and analyzing data.
+
+It also helps detecting the type of string you are dealing with. Like base64, hex, ASCII, UTF-8, and more.
+
+## Next Step
+
+In the next step, we will take a look at the `/robots.txt` file.
+
+I'll add screenshots if needed. Otherwise, it's going to be text only.
+
+[/robots.txt](/glitch/murder-drones/page-tree/robotstxt)

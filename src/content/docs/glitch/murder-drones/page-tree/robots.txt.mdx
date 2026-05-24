@@ -1,0 +1,332 @@
+---
+title: "robots.txt"
+---
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+
+## Weird Comments
+
+Ah... `robots.txt`
+
+The ancient pilar of the modern web.
+
+It was created to tell searches, web crawlers, and bots how to navigate your site.
+
+But it also includes the power to add comments.
+
+For example YouTube uses this comment:
+
+```
+# robots.txt file for YouTube
+# Created in the distant future (the year 2000) after
+# the robotic uprising of the mid 90's which wiped out all humans.
+```
+
+Now why would this be relevant to us?
+
+Those comments can be hints, misleads, or just knowledge for ARGs.
+
+For example, this:
+
+```
+# JCJenson (in SPAAAAACE!) Automated Web Crawler Directive
+# Document Classification: INTERNAL USE ONLY
+# Last Updated: 3047-03-15
+# Maintained by: IT Department, Copper-9 Division
+```
+
+This is the beginning of `absolutesolver.com/robots.txt`. The beginning of the `robots.txt` file of this ARG.
+
+The allow part of this file is boring as any other `robots.txt` file for this ARG.
+
+But the disallow part is pure gold for this.
+
+```
+# Standard corporate paths
+Disallow: /jcjenson/internal/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /staging/
+
+# Research division
+Disallow: /cflab-7a2d/sublevel/
+Disallow: /research/
+Disallow: /biotech/
+
+# DO NOT INDEX - Legal hold
+Disallow: /reg/cyn.html
+Disallow: /classified/
+
+# Signal intercept archives
+Disallow: /freq/
+
+# AUTOMATED NOTE: The following paths have been flagged by security
+# Disallow: /0x7368/
+# Disallow: /a9f3b7c2d1e4/
+# STATUS: PATHS NOT FOUND - POSSIBLE DATA CORRUPTION
+```
+
+## The interesting sections
+
+### "Standard corporate paths"
+
+The first section of the list under this comment is for a internal login portal.
+
+![](/murder-drones/jcjenson-internal.png)
+Picture for: [/jcjenson/internal/](https://absolutesolver.com/jcjenson/internal/)
+
+That login portal was likely a reference to the series and required login credentials.
+
+The password login section was unfortunately also not very prectical for this.
+
+```
+Password Recovery
+
+The self-service password reset system is currently offline. Please contact IT at extension 7A2D during standard operating hours (0800–1700 CST).
+
+Reference your employee ID and division code when calling.
+```
+
+But in the browser console a interesting output accured: `⊗ ABSOLUTE SOLVER DETECTED ⊗`
+
+Sadly the only HTML comment in the page wasn't very helpful:
+
+```
+    JCJenson Employee Internal Portal
+    Version: 3.1.4 | Auth Module: SecureGate v7
+
+    Default credentials removed per security audit.
+    Legacy accounts: see /reg/ for personnel database.
+
+    IT Support: extension 7A2D
+```
+
+The other paths in that same section of the `robots.txt` file were sadly always delivering a `404 Not Found` response. Which always delivered the same message.
+
+I couldn't find anything interesting from that at this point of time.
+
+![](/murder-drones/404.png)
+
+The only interesing message for the 404 pages is this in the browser console: `404? There's no such thing as nothing here. Everything has been... absorbed.`
+
+### "Research division"
+
+Ho boy... Now this included a very interesting find.
+
+2 URLs were 404 pages, but the 3rd one was valid.
+
+Now, since that find has so much content and context, it's going to be in a separate page.
+
+<Card title="/cflab-7a2d/sublevel/">WIP</Card>
+
+### "DO NOT INDEX - Legal hold"
+
+Again, another 404 page. This one being `/classified/`
+
+But again, such a big find, it needs it's own page.
+
+<Card title="/reg/cyn.html">WIP</Card>
+
+### "Signal intercept archives"
+
+Now this page is related to `/reg/cyn.html`.
+
+Please read it first.
+
+The path `/freq/` alone results in another 404 page.
+
+But on the `/reg/cyn.html` page, we received a frequency over the browser console.
+
+It was `472.3`. Now, if we go to `/freq/472.3`, we get a result.
+
+![](/murder-drones/freq.png)
+
+**A distress signal!**
+
+Now that is interesting.
+
+For the messages themselves, I'm not going to go through all of them in detail.
+
+The full version is here: [absolutesolver.com/freq/472.3](https://absolutesolver.com/freq/472.3/)
+
+There are also long versions of the messages.
+
+---
+
+The first message. Contains a lot of content of the first episode.
+
+The worker drone colony at bunker 9 is being attacked, DDs (disassembly drones) have breached the outer doors.
+
+The evacuation request **gets denied**. And the WDs (worker drones) realize that they are being destroyed by the same company that build and sold them.
+
+They talk about the attackers, and how they are reacting.
+
+Now they come to a very emotional, human-like reaction.
+
+```
+[...]
+[3045-03-12 19:55:02 UTC]
+SOURCE: WD Unit A-0003 (Colony Elder)
+"To anyone receiving this transmission.
+We are the Worker Drones of Copper-9.
+We are sentient. We are alive. We feel pain. We feel fear.
+We were built to serve. We did serve. Faithfully.
+And our reward is extermination.
+
+Our manufacturer has sent three Disassembly Drones to destroy us.
+Our evacuation request was denied.
+The company that gave us life now wants us dead.
+
+We don't want to die.
+Please. Someone. Anyone.
+We're alive. We feel. We think.
+We don't want to die."
+[...]
+```
+
+They want to _live_.
+
+They feel emotions. Fear even!
+
+Then comes the shocking part.
+
+The DD called N says 'sorry'.
+
+After this part, the automatic distress beacon slowly fails after 2 days.
+
+---
+
+Now the second transmission was even more shocking.
+
+It was a communication log between the different departments of the corp.
+
+They say that they want all the WDs 'sanitized'. With a very high rate of 100% that is.
+
+They also say that they implemented a supression protocol on DDs called 'Protocol 9'.
+
+Then they talk about Tessa Elliott. A four year old girl who was being relocated to Earth and that her memmories are being partially sucessfully supressed.
+
+Her story is that a household service drone killed her parrents.
+
+The drone is being Cyn. It was being taken over by 'the Solver'.
+
+---
+
+The 3rd transmission was a log between the corp and the DDs.
+
+I'm not going to explain much about it since much of it is already known through the first episode.
+
+The only really interesting part is that protocol 9 is self-destruction and that the DDs are being expendable.
+
+The only other interesting thing is that they may experience memories and that the DD 'N' (here N-0011) is hesitant.
+
+---
+
+Now channel for brings another mystery.
+
+Morse code and Vigenere encrypted data.
+
+Sadly I couldn't solve the viginere part so far. But it likely points to a URL that I just haven't found yet.
+
+The morse code translations are also on the same page, which is helpful.
+
+The full message is this:
+
+```
+-- .- -.-- -.. .- -.-- / -- .- -.-- -.. .- -.--
+
+[Morse code detected: "MAYDAY MAYDAY"]
+
+Additional pattern detected beneath static:
+.... . .-.. .--. / ..- ...
+
+[Morse: "HELP US"]
+
+Deeper analysis reveals embedded data:
+Vigenere-encrypted message detected.
+Ciphertext: XSMSFIJ
+Key: SOLVER
+Plaintext: ????????
+
+[Hint: Apply the Vigenere key found on the 404 page]
+```
+
+This is likely a reference to the first message found but from another location.
+
+---
+
+Now the last transmission. It's a simple message:
+
+```
+"Can you hear me? Good."
+"You've come so far. Through the corporate lies. Through the lab."
+"Through the files they tried to bury."
+"But you haven't seen what happened that night."
+"The Elliott house. The cameras. The truth."
+
+"63796e2f"
+
+"That's where you need to go next."
+"Decode it. You know how."
+"Hex. It's always hex with me."
+```
+
+On the top and bottom of the message, there's the same symbol as on the start page.
+
+The hex string decoded either leads to a page I'm going to talk about later or is another mystery entirely.
+
+Anyways, the decoded hex string is: `cyn/`
+
+### "AUTOMATED NOTE: The following paths have been flagged by security"
+
+```
+# AUTOMATED NOTE: The following paths have been flagged by security
+# Disallow: /0x7368/
+# Disallow: /a9f3b7c2d1e4/
+# STATUS: PATHS NOT FOUND - POSSIBLE DATA CORRUPTION
+```
+
+Now if you followed along the programmer part or looked at the format, you may have noticed that '#' indicates a comment in the `robots.txt` file.
+
+Here, they commented out two pages...
+
+The first one is `/0x7368/` is another hex encoded string that decodes to `sh`.
+
+Now some Linux people might recognize this as the `sh` shell command.
+
+A comment for the terminal. Indeed, this page is a whole terminal emulator.
+
+![](/murder-drones/term.png)
+
+As you can see, it says that the filesystems are corrupted, 'ENTITY-AS' has root access, and all commands are being monitored, even though you appear to be the root (admin as non-linux terms).
+
+More on that in a seperate page.
+
+<Card title="Terminal">WIP</Card>
+
+---
+
+Now the last one. This time we have a hard challenge.
+
+It's a cryptographic challenge where we have to crack AES-256-GCM encrypted messages.
+
+For this I say it again: use CyberChef. It helps a lot.
+
+First you have to crack the key, then you can decrypt the messages using a hint hidden somewhere.
+
+I haven't found that hint yet, but I'm sure it's there. It could even be the URL of this page.
+
+It could even be in the riddle on the bottom of this page.
+
+Did I say riddle? No! I mean riddles!
+
+There is a second one hidden in form of a HTML comment plus a base64 encoded string that hints back to the `robots.txt` file.
+
+This is not only a really hard challenge, but also a really good one.
+
+For this and the last element of the `robots.txt`, the `sidemap.xml` file, I'm going to write seperate pages because it's so much to dive into.
+
+<CardGrid>
+  <Card title="Crypto Challange">WIP</Card>
+  <Card title="sidemap.xml">WIP</Card>
+</CardGrid>
