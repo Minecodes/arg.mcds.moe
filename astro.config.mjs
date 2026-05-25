@@ -7,6 +7,8 @@ import mdx from "@astrojs/mdx";
 
 import playformCompress from "@playform/compress";
 
+import compressor from "astro-compressor";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://arg.mcds.moe",
@@ -31,18 +33,18 @@ export default defineConfig({
         },
       ],
       /**sidebar: [
-      {
-        label: "Guides",
-        items: [
-          // Each item here is one entry in the navigation menu.
-          { label: "Example Guide", slug: "guides/example" },
-        ],
-      },
-      {
-        label: "Reference",
-        items: [{ autogenerate: { directory: "reference" } }],
-      },
-    ],**/
+    {
+      label: "Guides",
+      items: [
+        // Each item here is one entry in the navigation menu.
+        { label: "Example Guide", slug: "guides/example" },
+      ],
+    },
+    {
+      label: "Reference",
+      items: [{ autogenerate: { directory: "reference" } }],
+    },
+  ],**/
     }),
     mdx(),
     playformCompress({
@@ -53,5 +55,6 @@ export default defineConfig({
       JSON: true,
       SVG: true,
     }),
+    compressor({ gzip: true, brotli: true }),
   ],
 });
