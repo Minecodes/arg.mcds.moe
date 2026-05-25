@@ -9,9 +9,12 @@ import playformCompress from "@playform/compress";
 
 import compressor from "astro-compressor";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://arg.mcds.moe",
+
   integrations: [
     starlight({
       title: "Minecodes' ARG Wiki",
@@ -57,4 +60,6 @@ export default defineConfig({
     }),
     compressor({ gzip: true, brotli: true }),
   ],
+
+  adapter: vercel(),
 });
