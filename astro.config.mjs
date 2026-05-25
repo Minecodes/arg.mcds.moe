@@ -3,6 +3,10 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import lucode from "lucode-starlight";
 
+import mdx from "@astrojs/mdx";
+
+import playformCompress from "@playform/compress";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://arg.mcds.moe",
@@ -27,18 +31,27 @@ export default defineConfig({
         },
       ],
       /**sidebar: [
-        {
-          label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
-          ],
-        },
-        {
-          label: "Reference",
-          items: [{ autogenerate: { directory: "reference" } }],
-        },
-      ],**/
+      {
+        label: "Guides",
+        items: [
+          // Each item here is one entry in the navigation menu.
+          { label: "Example Guide", slug: "guides/example" },
+        ],
+      },
+      {
+        label: "Reference",
+        items: [{ autogenerate: { directory: "reference" } }],
+      },
+    ],**/
+    }),
+    mdx(),
+    playformCompress({
+      CSS: true,
+      HTML: true,
+      Image: true,
+      JavaScript: true,
+      JSON: true,
+      SVG: true,
     }),
   ],
 });
